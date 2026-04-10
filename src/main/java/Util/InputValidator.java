@@ -5,20 +5,20 @@ import exception.InvalidWasteTypeException;
 import exception.InvalidFieldException;
 
 /*
- 5.1.1, 5.1.2, 5.1.3 - InputValidator updated with full validation coverage.
+ InputValidator updated with full validation coverage.
  All validation methods use custom exceptions from the exception package
  to prevent invalid data from being processed.
  */
 public class InputValidator {
 
-    // ID validation - unchanged from Deliverable 3
+    // ID validation 
     public static int validateId(String input) throws NumberFormatException {
         int id = Integer.parseInt(input.trim());
         if (id < 0) throw new NumberFormatException("ID cannot be negative.");
         return id;
     }
 
-    // 5.1.1 - Prevents negative weight submissions
+    // Prevents negative weight submissions
     public static double validateWeight(String input) throws InvalidWeightException {
         try {
             double weight = Double.parseDouble(input.trim());
@@ -30,7 +30,7 @@ public class InputValidator {
         }
     }
 
-    // 5.1.2 - Prevents unrecognised or unsupported waste type selections
+    // Prevents unrecognised or unsupported waste type selections
     public static int validateWasteType(String input) throws InvalidWasteTypeException {
         try {
             int selection = Integer.parseInt(input.trim());
@@ -42,7 +42,7 @@ public class InputValidator {
         }
     }
 
-    // 5.1.3 - Ensures all required text fields are completed before processing
+    // Ensures all required text fields are completed before processing
     public static String validateField(String input, String fieldName) throws InvalidFieldException {
         if (input == null || input.trim().isEmpty())
             throw new InvalidFieldException(fieldName + " cannot be empty. Please try again.");
