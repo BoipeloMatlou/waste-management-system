@@ -28,13 +28,13 @@ public class Main {
         ArrayList<Collector> collectors = new ArrayList<>();
         ArrayList<WasteSubmission> wasteItem = new ArrayList<>();
 
-        // 4.1 - SystemReportService initialised and passed into both service classes 
+        // SystemReportService initialised and passed into both service classes 
         SystemReportService reportService = new SystemReportService();
         HouseholdService householdService = new HouseholdService(households, reportService);
         WasteService wasteService = new WasteService(wasteItem, reportService);
 
         while (run) {
-            // 4.1 - Menu updated to include option 6 for the system report
+            // Menu updated to include option 6 for the system report
             System.out.println("-------Green Track System-------\n"
                     + "0 - Exit\n"
                     + "1 - Register a new household\n"
@@ -56,8 +56,8 @@ public class Main {
             switch (choice) {
 
 
-                // 3.1.1 - Case 1 delegates to HouseholdService
-                // 5.1.3 - Case 1: All household fields validated before the household is processed
+                // Case 1 delegates to HouseholdService
+                // Case 1: All household fields validated before the household is processed
                 case 1: {
                     Household household = new Household();
                     boolean validId = false;
@@ -72,7 +72,7 @@ public class Main {
                         }
                     }
 
-                    // 5.1.3 - Name field cannot be empty
+                    // Name field cannot be empty
                     boolean validName = false;
                     while (!validName) {
                         System.out.print("Enter the Head of household name: ");
@@ -84,7 +84,7 @@ public class Main {
                         }
                     }
 
-                    // 5.1.3 - Contact number field cannot be empty
+                    // Contact number field cannot be empty
                     boolean validContact = false;
                     while (!validContact) {
                         System.out.print("Enter the contact number: ");
@@ -96,7 +96,7 @@ public class Main {
                         }
                     }
 
-                    // 5.1.3 - Address field cannot be empty
+                    // Address field cannot be empty
                     boolean validAddress = false;
                     while (!validAddress) {
                         System.out.print("Enter the physical address: ");
@@ -112,7 +112,7 @@ public class Main {
                     break;
                 }
 
-                // 5.1.3 - Case 2: All collector fields validated before the collector is processed
+                // Case 2: All collector fields validated before the collector is processed
                 case 2: {
                     Collector collector = new Collector();
                     boolean validId = false;
@@ -127,7 +127,7 @@ public class Main {
                         }
                     }
 
-                    // 5.1.3 - Name field cannot be empty
+                    // Name field cannot be empty
                     boolean validName = false;
                     while (!validName) {
                         System.out.print("Enter the collector's name: ");
@@ -139,7 +139,7 @@ public class Main {
                         }
                     }
 
-                    // 5.1.3 - Service area field cannot be empty
+                    // Service area field cannot be empty
                     boolean validArea = false;
                     while (!validArea) {
                         System.out.print("Enter the service area: ");
@@ -157,11 +157,11 @@ public class Main {
                     break;
                 }
 
-                // 5.1.1, 5.1.2, 5.1.3 - Case 3: Full validation on all waste submission fields
+                // Case 3: Full validation on all waste submission fields
                 case 3: {
                     String itemName = "";
 
-                    // 5.1.3 - Item name cannot be empty
+                    // Item name cannot be empty
                     boolean validName = false;
                     while (!validName) {
                         System.out.print("Enter the item name: ");
@@ -178,7 +178,7 @@ public class Main {
                     while (!validWeight) {
                         System.out.print("Enter the item weight (kg): ");
                         try {
-                            // 5.1.1 - Negative weights prevented via InvalidWeightException
+                            // Negative weights prevented via InvalidWeightException
                             weight = InputValidator.validateWeight(scanner.nextLine());
                             validWeight = true;
                         } catch (InvalidWeightException e) {
@@ -211,7 +211,7 @@ public class Main {
                                 + "1 - Plastic\n2 - Organic\n3 - Hazardous\n");
                         System.out.print("Selection: ");
                         try {
-                            // 5.1.2 - Unsupported waste types prevented via InvalidWasteTypeException
+                            // Unsupported waste types prevented via InvalidWasteTypeException
                             int selection = InputValidator.validateWasteType(scanner.nextLine());
                             switch (selection) {
                                 case 1: wasteSubmission = new PlasticWaste(itemName, weight, householdId); 
@@ -261,7 +261,7 @@ public class Main {
                     wasteService.generateReport(households); 
                     break; }
 
-                // 4.1 - Case 6: View System Report
+                // Case 6: View System Report
                 case 6: {
                     reportService.displayReport();
                     break;
